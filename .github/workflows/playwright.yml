@@ -9,12 +9,18 @@ on:
     # Run tests daily at 2 AM UTC
     - cron: '0 2 * * *'
 
+# Prevent concurrent workflow runs from canceling each other
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
   test:
     timeout-minutes: 60
     runs-on: ubuntu-latest
     
     strategy:
+      fail-fast: false  # Don't cancel other browsers if one fails
       matrix:
         # Run tests across different browsers
         browser: [chromium, firefox, webkit]
@@ -31,9 +37,11 @@ jobs:
 
     - name: Install dependencies
       run: npm ci
+      timeout-minutes: 5
 
     - name: Install Playwright Browsers
       run: npx playwright install --with-deps ${{ matrix.browser }}
+      timeout-minutes: 10
 
     - name: Read test tag from file
       if: github.event_name == 'pull_request'
@@ -51,6 +59,7 @@ jobs:
     - name: Run Playwright tests (Pull Request)
       if: github.event_name == 'pull_request' && steps.test-tag.outputs.tag != ''
       run: npm test -- --project=${{ matrix.browser }} --grep "${{ steps.test-tag.outputs.tag }}"
+      timeout-minutes: 30
       env:
         CI: true
         HEADLESS: true
@@ -61,6 +70,7 @@ jobs:
     - name: Run Playwright tests (Push/Schedule)
       if: github.event_name != 'pull_request' || steps.test-tag.outputs.tag == ''
       run: npm test -- --project=${{ matrix.browser }}
+      timeout-minutes: 30
       env:
         CI: true
         HEADLESS: true
@@ -71,22 +81,27 @@ jobs:
     - name: Upload test results
       uses: actions/upload-artifact@v4
       if: always()
+      continue-on-error: true
       with:
         name: playwright-report-${{ matrix.browser }}
         path: reports/
         retention-days: 30
+        if-no-files-found: warn
 
     - name: Upload screenshots
       uses: actions/upload-artifact@v4
       if: failure()
+      continue-on-error: true
       with:
         name: screenshots-${{ matrix.browser }}
         path: screenshots/
         retention-days: 30
+        if-no-files-found: warn
 
     - name: Publish test results
       uses: EnricoMi/publish-unit-test-result-action@v2
       if: always()
+      continue-on-error: true
       with:
         files: reports/junit-report/*.xml
         check_name: Test Results (${{ matrix.browser }})

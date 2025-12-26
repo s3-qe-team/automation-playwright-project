@@ -36,8 +36,8 @@ module.exports = defineConfig({
     /* Screenshot on failure */
     screenshot: 'only-on-failure',
     
-    /* Video recording */
-    video: 'retain-on-failure',
+    /* Video recording - disabled in CI to save time and resources */
+    video: process.env.CI ? 'off' : 'retain-on-failure',
     
     /* Collect trace on failure */
     trace: 'retain-on-failure',
