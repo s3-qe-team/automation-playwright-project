@@ -86,7 +86,7 @@ class BasePage {
    * Wait for navigation to complete
    */
   async waitForNavigation() {
-    await this.page.waitForLoadState('networkidle');
+    await this.page.waitForLoadState("networkidle");
   }
 
   /**
