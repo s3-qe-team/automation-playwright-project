@@ -35,7 +35,29 @@ jobs:
     - name: Install Playwright Browsers
       run: npx playwright install --with-deps ${{ matrix.browser }}
 
-    - name: Run Playwright tests
+    - name: Read test tag from file
+      if: github.event_name == 'pull_request'
+      id: test-tag
+      run: |
+        if [ -f "test-tags.txt" ]; then
+          TAG=$(cat test-tags.txt | tr -d '[:space:]')
+          echo "tag=$TAG" >> $GITHUB_OUTPUT
+          echo "Using test tag: $TAG"
+        else
+          echo "test-tags.txt not found, running all tests"
+          echo "tag=" >> $GITHUB_OUTPUT
+        fi
+
+    - name: Run Playwright tests (Pull Request)
+      if: github.event_name == 'pull_request' && steps.test-tag.outputs.tag != ''
+      run: npm test -- --project=${{ matrix.browser }} --grep "${{ steps.test-tag.outputs.tag }}"
+      env:
+        BASE_URL: ${{ secrets.BASE_URL }}
+        TEST_USER_EMAIL: ${{ secrets.TEST_USER_EMAIL }}
+        TEST_USER_PASSWORD: ${{ secrets.TEST_USER_PASSWORD }}
+
+    - name: Run Playwright tests (Push/Schedule)
+      if: github.event_name != 'pull_request' || steps.test-tag.outputs.tag == ''
       run: npm test -- --project=${{ matrix.browser }}
       env:
         BASE_URL: ${{ secrets.BASE_URL }}
