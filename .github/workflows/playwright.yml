@@ -52,6 +52,8 @@ jobs:
       if: github.event_name == 'pull_request' && steps.test-tag.outputs.tag != ''
       run: npm test -- --project=${{ matrix.browser }} --grep "${{ steps.test-tag.outputs.tag }}"
       env:
+        CI: true
+        HEADLESS: true
         BASE_URL: ${{ secrets.BASE_URL }}
         TEST_USER_EMAIL: ${{ secrets.TEST_USER_EMAIL }}
         TEST_USER_PASSWORD: ${{ secrets.TEST_USER_PASSWORD }}
@@ -60,6 +62,8 @@ jobs:
       if: github.event_name != 'pull_request' || steps.test-tag.outputs.tag == ''
       run: npm test -- --project=${{ matrix.browser }}
       env:
+        CI: true
+        HEADLESS: true
         BASE_URL: ${{ secrets.BASE_URL }}
         TEST_USER_EMAIL: ${{ secrets.TEST_USER_EMAIL }}
         TEST_USER_PASSWORD: ${{ secrets.TEST_USER_PASSWORD }}

@@ -30,7 +30,8 @@ module.exports = defineConfig({
     baseURL: process.env.BASE_URL || 'https://example.com',
     
     /* Browser will open when running tests (can be overridden by .env HEADLESS variable) */
-    headless: process.env.HEADLESS === 'true' ? true : false,
+    /* Default to headless in CI environments, headed mode locally */
+    headless: process.env.HEADLESS === 'false' ? false : (process.env.CI ? true : false),
     
     /* Screenshot on failure */
     screenshot: 'only-on-failure',
