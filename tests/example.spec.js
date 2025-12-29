@@ -5,7 +5,7 @@
 const { test, expect } = require("@playwright/test");
 const helpers = require("../utils/helpers");
 
-test.describe("Example Test Suite", () => {
+test.describe("Example Test Suite @smoke", () => {
   test("basic navigation test", async ({ page }) => {
     await page.goto("https://playwright.dev");
 
