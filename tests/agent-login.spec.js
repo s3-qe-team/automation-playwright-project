@@ -1,37 +1,22 @@
 const { test, expect } = require('@playwright/test');
 const { config } = require('../utils/config');
+const { AgentLoginPage } = require('../pages/login.page.js');
 
-test('login as an agent', async ({ page }) => {
-    // Navigate to the BASE_URL
-    await page.goto(config.baseURL);
+test('login as an agent @login', async ({ page }) => {
+    const agentPage = new AgentLoginPage(page);
 
-    // Open Agents dropdown menu
-    await page.getByRole('button', { name: 'Agents' }).click();
+    // Navigate to BASE_URL
+    await agentPage.navigate(config.baseURL);
 
-    // Click Login link in the dropdown
-    await page.getByRole('link', { name: 'Login' }).click();
+    // Navigate to Agent Login Page
+    await agentPage.navigateToAgentLogin();
 
-    // Verify Agent Login page is loaded
+    // Verify Agent Login Page is loaded
     await expect(page).toHaveURL(/.*login\?agent=1/);
 
-    // Locate Agent Login form to scope input fields
-    const agentLoginForm = page.locator('form#login');
-
     // Fill in login credentials
-    await agentLoginForm.getByPlaceholder('name@example.com').fill(config.testUserEmail);
-    await agentLoginForm.getByPlaceholder('Enter your password').fill(config.testUserPassword);
+    await agentPage.fillLoginCredentials(config.testUserEmail, config.testUserPassword);
 
-    // Locate Login button
-    const loginBtn = page.getByRole('button', { name: 'Login' });
-    
-    // Get the color before hovering
-    const colorBefore = await loginBtn.evaluate(el =>
-        window.getComputedStyle(el).backgroundColor
-    );    
-
-    // Hover over Login button
-    await loginBtn.hover();
-
-    // Verify Login button color changes on hover
-    await expect(loginBtn).not.toHaveCSS('background-color', colorBefore);
+    // Verify Login button color changes
+    await agentPage.verifyButtonColorChange();
 });
