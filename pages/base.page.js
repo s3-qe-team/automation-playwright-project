@@ -19,7 +19,8 @@ class BasePage {
    * @param {string} locator - Element locator
    */
   async click(locator) {
-    await this.page.locator(locator).click();
+    const el = typeof locator === 'string' ? this.page.locator(locator) : locator;
+    await el.click();
   }
 
   /**
@@ -28,7 +29,8 @@ class BasePage {
    * @param {string} text - Text to fill
    */
   async fill(locator, text) {
-    await this.page.locator(locator).fill(text);
+    const el = typeof locator === 'string' ? this.page.locator(locator) : locator;
+    await el.fill(text);
   }
 
   /**
@@ -37,7 +39,8 @@ class BasePage {
    * @returns {Promise<string>} Element text
    */
   async getText(locator) {
-    return await this.page.locator(locator).textContent();
+    const el = typeof locator === 'string' ? this.page.locator(locator) : locator;
+    return await el.textContent();
   }
 
   /**
@@ -46,7 +49,8 @@ class BasePage {
    * @param {number} timeout - Optional timeout in milliseconds
    */
   async waitForElement(locator, timeout = 30000) {
-    await this.page.locator(locator).waitFor({ state: 'visible', timeout });
+    const el = typeof locator === 'string' ? this.page.locator(locator) : locator;
+    await el.waitFor({ state: 'visible', timeout });
   }
 
   /**
@@ -55,7 +59,8 @@ class BasePage {
    * @returns {Promise<boolean>} True if visible
    */
   async isVisible(locator) {
-    return await this.page.locator(locator).isVisible();
+    const el = typeof locator === 'string' ? this.page.locator(locator) : locator;
+    return await el.isVisible();
   }
 
   /**
@@ -102,7 +107,8 @@ class BasePage {
    * @param {string} locator - Element locator
    */
   async hover(locator) {
-    await this.page.locator(locator).hover();
+    const el = typeof locator === 'string' ? this.page.locator(locator) : locator;
+    await el.hover();
   }
 
   /**
@@ -111,7 +117,8 @@ class BasePage {
    * @param {string} value - Option value
    */
   async selectOption(locator, value) {
-    await this.page.locator(locator).selectOption(value);
+    const el = typeof locator === 'string' ? this.page.locator(locator) : locator;
+    await el.selectOption(value);
   }
 
   /**
@@ -119,7 +126,8 @@ class BasePage {
    * @param {string} locator - Checkbox locator
    */
   async check(locator) {
-    await this.page.locator(locator).check();
+    const el = typeof locator === 'string' ? this.page.locator(locator) : locator;
+    await el.check();
   }
 
   /**
@@ -127,7 +135,8 @@ class BasePage {
    * @param {string} locator - Checkbox locator
    */
   async uncheck(locator) {
-    await this.page.locator(locator).uncheck();
+    const el = typeof locator === 'string' ? this.page.locator(locator) : locator;
+    await el.uncheck();
   }
 }
 

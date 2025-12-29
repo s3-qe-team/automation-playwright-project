@@ -1,27 +1,25 @@
 /**
- * Login page locators
- * Contains all element selectors for the Login page
+ * Locators for Agent Login page
  */
 module.exports = {
-  // Input fields
-  emailInput: '#email',
-  passwordInput: '#password',
+  // Menu bar
+  agentsButton: (page) =>
+    page.getByRole('button', { name: 'Agents' }),
+  
+  loginLink: (page) =>
+    page.getByRole('link', { name: 'Login' }),
+  
+  // Login form
+  agentsLoginForm: (page) =>    // find the container form in the login page
+    page.locator('form#login'),
+
+  emailInput: (form) =>        // find the email input field within the form 
+    form.getByPlaceholder('name@example.com'),
+
+  passwordInput: (form) =>
+    form.getByPlaceholder('Enter your password'),
   
   // Buttons
-  loginButton: 'button[type="submit"]',
-  forgotPasswordLink: 'a[href*="forgot-password"]',
-  signUpLink: 'a[href*="signup"]',
-  
-  // Messages
-  errorMessage: '.error-message',
-  successMessage: '.success-message',
-  
-  // Other elements
-  rememberMeCheckbox: '#remember-me',
-  loginForm: 'form#login-form',
-  logo: '.logo',
-  
-  // Social login buttons (if applicable)
-  googleLoginButton: 'button[data-provider="google"]',
-  facebookLoginButton: 'button[data-provider="facebook"]',
+  loginButton: (page) =>
+    page.getByRole('button', { name: 'Login'}),
 };
