@@ -2,6 +2,7 @@
 class BasePage {
   constructor(page) {
     this.page = page;
+    this.mainPage = page; // save original page to switch back  
   }
 
   //Actions with page
@@ -115,7 +116,45 @@ class BasePage {
     await this.page.screenshot({ path: `screenshots/${name}.png`, fullPage: true });
   }
 
+  // Switch to frame
+  switchToFrame(frameSelector) {
+    return this.page.frameLocator(frameSelector);
+  }
 
+  // Switch to original page
+  async switchToOriginalPage() {
+    this.page = this.mainPage;
+    await this.page.bringToFront();
+  }
+
+  // Open new tab
+  async openNewTab(url) {
+    const newPage = await this.page.context().newPage();
+    await newPage.goto(url);
+    this.page = newPage;
+    return newPage;
+  }
+
+  // Close current tab
+  async closeCurrentTab() {
+    await this.page.close();
+    if (this.page !== this.mainPage) {
+      this.page = this.mainPage;
+    }
+  }
+
+  // Scroll to bottom
+  async scrollToBottom() {
+    await this.page.evaluate(() => {
+      window.scrollTo(0, document.body.scrollHeight);
+    });
+  }
+
+  // Scroll element to top
+  async scrollElementToTop(element) {
+    await element.evaluate(el => {
+      el.scrollIntoView({ behavior: 'auto', block: 'start' });
+    });
+  }
 }
-
-module.exports = BasePage;
+module.exports = BasePage;  
