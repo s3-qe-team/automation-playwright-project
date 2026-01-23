@@ -1,134 +1,121 @@
-/**
- * BasePage class containing common functions for all page objects
- */
+
 class BasePage {
   constructor(page) {
     this.page = page;
   }
 
-  /**
-   * Navigate to a specific URL
-   * @param {string} url - URL to navigate to
-   */
-  async navigate(url) {
+  //Actions with page
+  async openPage(url) {
     await this.page.goto(url);
   }
 
-  /**
-   * Click on an element
-   * @param {string} locator - Element locator
-   */
-  async click(locator) {
-    await this.page.locator(locator).click();
-  }
-
-  /**
-   * Fill input field
-   * @param {string} locator - Element locator
-   * @param {string} text - Text to fill
-   */
-  async fill(locator, text) {
-    await this.page.locator(locator).fill(text);
-  }
-
-  /**
-   * Get text from element
-   * @param {string} locator - Element locator
-   * @returns {Promise<string>} Element text
-   */
-  async getText(locator) {
-    return await this.page.locator(locator).textContent();
-  }
-
-  /**
-   * Wait for element to be visible
-   * @param {string} locator - Element locator
-   * @param {number} timeout - Optional timeout in milliseconds
-   */
-  async waitForElement(locator, timeout = 30000) {
-    await this.page.locator(locator).waitFor({ state: 'visible', timeout });
-  }
-
-  /**
-   * Check if element is visible
-   * @param {string} locator - Element locator
-   * @returns {Promise<boolean>} True if visible
-   */
-  async isVisible(locator) {
-    return await this.page.locator(locator).isVisible();
-  }
-
-  /**
-   * Get page title
-   * @returns {Promise<string>} Page title
-   */
-  async getTitle() {
-    return await this.page.title();
-  }
-
-  /**
-   * Get current URL
-   * @returns {string} Current URL
-   */
   getCurrentUrl() {
     return this.page.url();
   }
+  async getPageSourceCode() {
+    return await this.page.content();
+  }
 
-  /**
-   * Take screenshot
-   * @param {string} name - Screenshot name
-   */
+  async goBackPage() {
+    await this.page.goBack({ waitUntil: 'load' });
+  }
+
+  async forwardToPage() {
+    await this.page.goForward({ waitUntil: 'load' });
+  }
+  async refreshCurrentPage() {
+    await this.page.reload({ waitUntil: 'load' });
+  }
+
+
+
+  //Alert
+  async acceptAlert() {
+    const dialog = await this.page.waitForEvent('dialog');
+    await dialog.accept();
+  }
+  async dismissAlert() {
+    const dialog = await this.page.waitForEvent('dialog');
+    await dialog.dismiss();
+  }
+  async enterTextToAlert(text) {
+    const dialog = await this.page.waitForEvent('dialog');
+    await dialog.accept(text);
+  }
+  async getAlertMassage() {
+    const dialog = await this.page.waitForEvent('dialog');
+    const message = dialog.message();
+    await dialog.accept();
+    return message;
+  }
+
+  //Element
+
+  async clickToElement(element) {
+    await element.click();
+  }
+
+  async fillTextToElement(element, text) {
+    await element.fill(text);
+  }
+
+  async getElementText(element) {
+    return await element.textContent();
+
+  }
+  async clear(element) {
+    await element.fill('');
+  }
+  async isElementVisible(element) {
+    return await element.isVisible();
+  }
+  //Dropdown
+  async selectItemInDropDown(dropDownEl, optionEl) { //default dropdown - select tagname with Option
+    await dropDownEl.selectOption(optionEl);
+  }
+  async selectItemInCustomDropDown(dropDownEl, optionEl) { //custom dropdown 
+    await dropDownEl.click();
+    await optionEl.click();
+  }
+  async getSelectedItemInDropDown(dropdownEl) {
+    return await dropdownEl.inputValue();
+  }
+  async isDropdownMultiple(dropDownEl) {
+    return await dropDownEl.evaluate(el => el.multiple);
+  }
+  //Checkbox, radio
+  async checkElement(element) {
+    await element.check();
+  }
+
+  async uncheckElement(element) {
+    await element.uncheck();
+  }
+
+  //Wait
+  async waitForUrl(urlPart) {
+    await this.page.waitForURL(`**${urlPart}**`);
+  }
+  async waitForElementToBeVisible(element, timeout = 30000) {
+    await element.waitFor({ state: 'visible', timeout });
+  }
+
+  async waitForTextVisible(text) {
+    await this.page.getByText(text).waitFor({ state: 'visible' });
+  }
+  async waitForLoadingDisappear(loadingLocator) {
+    await loadingLocator.waitFor({ state: 'hidden' });
+  }
+
+  async waitForElementHidden(locator) {
+    await locator.waitFor({ state: 'hidden' });
+  }
+
   async takeScreenshot(name) {
     await this.page.screenshot({ path: `screenshots/${name}.png`, fullPage: true });
   }
 
-  /**
-   * Wait for navigation to complete
-   */
-  async waitForNavigation() {
-    await this.page.waitForLoadState("networkidle");
-  }
 
-  /**
-   * Press keyboard key
-   * @param {string} key - Key to press
-   */
-  async pressKey(key) {
-    await this.page.keyboard.press(key);
-  }
-
-  /**
-   * Hover over element
-   * @param {string} locator - Element locator
-   */
-  async hover(locator) {
-    await this.page.locator(locator).hover();
-  }
-
-  /**
-   * Select dropdown option by value
-   * @param {string} locator - Dropdown locator
-   * @param {string} value - Option value
-   */
-  async selectOption(locator, value) {
-    await this.page.locator(locator).selectOption(value);
-  }
-
-  /**
-   * Check checkbox
-   * @param {string} locator - Checkbox locator
-   */
-  async check(locator) {
-    await this.page.locator(locator).check();
-  }
-
-  /**
-   * Uncheck checkbox
-   * @param {string} locator - Checkbox locator
-   */
-  async uncheck(locator) {
-    await this.page.locator(locator).uncheck();
-  }
 }
 
 module.exports = BasePage;
