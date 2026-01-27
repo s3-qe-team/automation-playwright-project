@@ -122,9 +122,14 @@ class BasePage {
   }
 
   // Switch to original page
-  async switchToOriginalPage() {
+  async switchToOriginalTab() {
     this.page = this.mainPage;
     await this.page.bringToFront();
+  }
+
+  // Switch to main page
+  async switchToMainPage() {
+    return this.page.mainFrame();
   }
 
   // Open new tab
