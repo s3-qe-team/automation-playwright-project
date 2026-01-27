@@ -122,9 +122,14 @@ class BasePage {
   }
 
   // Switch to original page
-  async switchToOriginalPage() {
+  async switchToOriginalTab() {
     this.page = this.mainPage;
     await this.page.bringToFront();
+  }
+
+  // Switch to main page
+  async switchToMainPage() {
+    return this.page.mainFrame();
   }
 
   // Open new tab
@@ -156,5 +161,54 @@ class BasePage {
       el.scrollIntoView({ behavior: 'auto', block: 'start' });
     });
   }
+
+  // Hover to element
+  async hoverToElement(element) {
+    await element.hover();
+  }
+
+  // Release mouse
+  async releaseMouse() {
+    await this.page.mouse.up();
+  }
+
+  // Click and hold
+  async clickAndHold(element) {
+    await element.hover();
+    await this.page.mouse.down();
+  }
+
+  // Double click
+  async doubleClick(element) {
+    await element.dblclick();
+  }
+
+  // Right click
+  async rightClick(element) {
+    await element.click({ button: 'right' });
+  }
+
+  // Drag and drop
+  async dragAndDrop(element, target) {
+    await element.dragTo(target);
+  }
+
+  // Move mouse to element
+  async moveToElement(element) {
+    await element.hover();
+  }
+
+  // Keyboard Actions
+  /**
+   * @param {string} key - (example: 'Enter', 'Tab', 'Control+A', 'ArrowUp')
+   */
+  async pressKeyOnElement(element, key) {
+    await element.press(key);
+  }
+
+  async pressKey(key) {
+    await this.page.keyboard.press(key);
+  }
 }
+
 module.exports = BasePage;  
