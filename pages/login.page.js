@@ -10,6 +10,7 @@ export default class LoginPage {
     this.passwordInput = page.locator("input[data-qa='login-password']");
     this.loginButton = page.locator("button[data-qa='login-button']");
     this.loginSuccessText = page.locator("//a[contains(.,'Logged in as')]");
+    this.loginPageTitle = page.locator("div.login-form>h2");
   }
 
   // ===== ACTIONS =====
@@ -21,8 +22,5 @@ export default class LoginPage {
   }
   async clickToLoginButton() {
     await this.basePage.clickToElement(this.loginButton);
-  }
-  async expectToSeeLogInAsText() {
-    await expect(this.loginSuccessText.toBeVisible());
   }
 }

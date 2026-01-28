@@ -7,13 +7,14 @@ export default class HomePage {
     this.basePage = new BasePage(page);
 
     // ===== LOCATORS =====
-    this.loginButton = this.loginLink = page.locator("a[href='/login']");
-;
+    this.loginButton = page.locator("a[href='/login']");
+    this.homeButton = page.locator("li a[href='/']");
   }
 
   // ===== ACTIONS =====
   async openLoginPage() {
     await this.basePage.clickToElement(this.loginButton);
+    //await this.basePage.waitForUrl("/login");
     return new LoginPage(this.page);
   }
 
