@@ -11,7 +11,8 @@ module.exports = defineConfig({
   timeout: 30 * 1000,
   
   /* Test execution settings */
-  fullyParallel: true,
+  fullyParallel: false,
+  workers: 1,
   forbidOnly: !!process.env.CI,
   retries: process.env.CI ? 2 : 0,
   workers: process.env.CI ? 1 : undefined,
@@ -27,7 +28,7 @@ module.exports = defineConfig({
   /* Shared settings for all the projects */
   use: {
     /* Base URL to use in actions like `await page.goto('/')` */
-    baseURL: process.env.BASE_URL || 'https://example.com',
+    baseURL: process.env.BASE_URL || 'https://automationexercise.com',
     
     /* Browser will open when running tests (can be overridden by .env HEADLESS variable) */
     /* Default to headless in CI environments, headed mode locally */
@@ -51,30 +52,25 @@ module.exports = defineConfig({
 
   /* Configure projects for major browsers */
   projects: [
-    {
+   /* {
       name: 'chromium',
       use: { ...devices['Desktop Chrome'] },
-    },
+    },*/
 
     {
       name: 'firefox',
       use: { ...devices['Desktop Firefox'] },
     },
 
-    {
-      name: 'webkit',
-      use: { ...devices['Desktop Safari'] },
-    },
-
     /* Test against mobile viewports */
-    {
+    /*{
       name: 'mobile-chrome',
       use: { ...devices['Pixel 5'] },
     },
     {
       name: 'mobile-safari',
       use: { ...devices['iPhone 12'] },
-    },
+    },*/
   ],
 
   /* Folder for test artifacts such as screenshots, videos, traces, etc. */
