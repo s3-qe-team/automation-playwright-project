@@ -7,7 +7,7 @@ require('dotenv').config();
 
 const config = {
   // Application URLs
-  baseURL: process.env.BASE_URL || 'https://automationexercise.com/products',
+  baseURL: process.env.BASE_URL || 'https://automationexercise.com',
   
   // Test User Credentials
   testUserEmail: process.env.TEST_USER_EMAIL || 'test@example.com',

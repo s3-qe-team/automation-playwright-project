@@ -100,7 +100,9 @@ class BasePage {
   async waitForElementToBeVisible(element, timeout = 30000) {
     await element.waitFor({ state: 'visible', timeout });
   }
-
+  async waitForElementVisible(locator) {
+    await locator.waitFor({ state: 'visible' });
+  }
   async waitForTextVisible(text) {
     await this.page.getByText(text).waitFor({ state: 'visible' });
   }
