@@ -52,10 +52,10 @@ module.exports = defineConfig({
 
   /* Configure projects for major browsers */
   projects: [
-   /* {
+   {
       name: 'chromium',
       use: { ...devices['Desktop Chrome'] },
-    },*/
+    },
 
     {
       name: 'firefox',
@@ -63,14 +63,14 @@ module.exports = defineConfig({
     },
 
     /* Test against mobile viewports */
-    /*{
+    {
       name: 'mobile-chrome',
       use: { ...devices['Pixel 5'] },
     },
     {
       name: 'mobile-safari',
       use: { ...devices['iPhone 12'] },
-    },*/
+    },
   ],
 
   /* Folder for test artifacts such as screenshots, videos, traces, etc. */

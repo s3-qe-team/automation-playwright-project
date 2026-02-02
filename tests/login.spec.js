@@ -17,7 +17,7 @@ test.beforeEach(async ({ page }) => {
   await basePage.openPage('/');
 });
 
- test('Test Case 2: Login User with correct email and password', async ({ page }) => {
+ test('@smoke Test Case 2: Login User with correct email and password', async ({ page }) => {
   const homePage = new HomePage(page);
   await expect(homePage.homeButton).toHaveCSS(cssValue,expectedColorInRba);
   const loginPage = await homePage.openLoginPage();
