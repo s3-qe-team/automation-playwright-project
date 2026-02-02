@@ -12,12 +12,13 @@
   const expectedColorInRba = "rgb(255, 165, 0)";
   const expectedLoginPageTitle = "Login to your account";
   
-test.beforeEach(async ({ page }) => {
+test.describe('@smoke', () => {
+  test.beforeEach(async ({ page }) => {
   const basePage = new BasePage(page);
   await basePage.openPage('/');
 });
 
- test('@smoke Test Case 2: Login User with correct email and password', async ({ page }) => {
+ test('Test Case 2: Login User with correct email and password', async ({ page }) => {
   const homePage = new HomePage(page);
   await expect(homePage.homeButton).toHaveCSS(cssValue,expectedColorInRba);
   const loginPage = await homePage.openLoginPage();
@@ -30,6 +31,7 @@ test.beforeEach(async ({ page }) => {
   await expect(loginPage.loginSuccessText).toBeVisible();
 
 });
+})
 
 /*test.afterAll(async () => {
   await context.close();
