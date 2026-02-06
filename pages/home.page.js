@@ -1,7 +1,7 @@
-import BasePage from './base.page.js';
-import LoginPage from './login.page.js';
+const BasePage = require('./base.page');
+const LoginPage = require('./login.page');
 
-export default class HomePage {
+class HomePage {
   constructor(page) {
     this.page = page;
     this.basePage = new BasePage(page);
@@ -17,6 +17,6 @@ export default class HomePage {
     //await this.basePage.waitForUrl("/login");
     return new LoginPage(this.page);
   }
-
-  
 }
+
+module.exports = HomePage;

@@ -1,6 +1,6 @@
-import BasePage from './base.page.js';
+const BasePage = require('./base.page');
 
-export default class LoginPage {
+class LoginPage {
   constructor(page) {
     this.page = page;
     this.basePage = new BasePage(page);
@@ -24,3 +24,5 @@ export default class LoginPage {
     await this.basePage.clickToElement(this.loginButton);
   }
 }
+
+module.exports = LoginPage;
