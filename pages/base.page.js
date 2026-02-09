@@ -32,8 +32,12 @@ class BasePage {
 
   //Alert
   async acceptAlert() {
-    const dialog = await this.page.waitForEvent('dialog');
+    const dialog = await this.page.waitForEvent('dialog', { timeout: 10000 });
     await dialog.accept();
+  }
+
+  async onceAcceptAlert() {
+    this.page.once('dialog', dialog => dialog.accept());
   }
   async dismissAlert() {
     const dialog = await this.page.waitForEvent('dialog');
@@ -210,6 +214,12 @@ class BasePage {
 
   async pressKey(key) {
     await this.page.keyboard.press(key);
+  }
+
+  // Upload file
+  async uploadFile(selector, filePath) {
+    const fileInput = this.page.locator(selector);
+    await fileInput.setInputFiles(filePath);
   }
 }
 

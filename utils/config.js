@@ -24,6 +24,10 @@ const config = {
   testUserZipCode: process.env.TEST_USER_ZIP_CODE || '12345',
   testUserMobileNumber: process.env.TEST_USER_MOBILE_NUMBER || '1234567890',
 
+  // Contact Us Test Data
+  testSubject: process.env.TEST_SUBJECT || 'Test Subject',
+  testMessage: process.env.TEST_MESSAGE || 'This is a test message for contact us form.',
+
   // Environment
   env: process.env.ENV || 'qa',
 
