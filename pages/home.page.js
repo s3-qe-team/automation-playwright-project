@@ -1,5 +1,5 @@
 import BasePage from './base.page.js';
-import LoginPage from './login.page.js';
+import LoginSignupPage from './loginSignup.page.js';
 
 export default class HomePage {
   constructor(page) {
@@ -12,10 +12,10 @@ export default class HomePage {
   }
 
   // ===== ACTIONS =====
-  async openLoginPage() {
+  async openLoginSignupPage() {
     await this.basePage.clickToElement(this.loginButton);
     //await this.basePage.waitForUrl("/login");
-    return new LoginPage(this.page);
+    return new LoginSignupPage(this.page);
   }
 
   
