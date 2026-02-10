@@ -18,7 +18,7 @@ test.describe('@smoke', () => {
         await page.goto(config.baseURL);
 
         // 3. Verify that home page is visible successfully
-        await homePage.verifyHomePageIsVisible();
+        await expect(homePage.homeButton).toHaveCSS("color", "rgb(255, 165, 0)");
 
         // 4. Click on 'Signup / Login' button
         await homePage.openLoginSignupPage();
