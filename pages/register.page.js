@@ -1,19 +1,12 @@
-const BasePage = require("./base.page");
-const HomePage = require("./home.page");
+import BasePage from './base.page.js';
 
-class RegisterPage {
+export default class RegisterPage {
     constructor(page) {
         this.page = page;
         this.basePage = new BasePage(page);
 
         // ====  LOCATORS ====
-        // --- 1. Signup form ---
-        this.signupHeader = page.locator('div.signup-form h2');
-        this.signupNameInput = page.locator('input[data-qa="signup-name"]');
-        this.signupEmailInput = page.locator('input[data-qa="signup-email"]');
-        this.signupButton = page.locator('button[data-qa="signup-button"]');
-
-        // --- 2. Enter Account Information section ---
+        // --- Enter Account Information section ---
         this.accountInformationHeader = page.locator('div.login-form h2', { hasText: /Enter Account Information/i });
 
         // Title & Personal Information
@@ -31,7 +24,7 @@ class RegisterPage {
         this.newsletter = page.locator('#newsletter');
         this.specialOffers = page.locator('#optin');
 
-        // --- 3. Address Information section ---
+        // --- Address Information section ---
         this.firstName = page.locator('input[data-qa="first_name"]');
         this.lastName = page.locator('input[data-qa="last_name"]');
         this.company = page.locator('input[data-qa="company"]');
@@ -46,11 +39,10 @@ class RegisterPage {
         // Create Account button
         this.createAccountButton = page.locator('button[data-qa="create-account"]');
 
-        // --- 4. Confirmation section ---
+        // --- Confirmation section ---
         // Account Created
         this.accountCreatedHeader = page.locator('h2[data-qa="account-created"]');
         this.continueButton = page.locator('[data-qa="continue-button"]');
-        this.loggedInUserText = page.locator('//a[contains(., "Logged in as")]');
 
         // Account Deleted
         this.deleteAccountButton = page.locator('a[href="/delete_account"]');
@@ -58,30 +50,13 @@ class RegisterPage {
     }
 
     // ==== ACTIONS ====
-
-    // Click on 'Signup / Login' button 
-    async clickSignupLoginLink() {
-        await this.basePage.clickToElement(this.signupLoginLink);
-    }
-
-    // Enter name and email address 
-    async signup(name, email) {
-        await this.basePage.fillTextToElement(this.signupNameInput, name);
-        await this.basePage.fillTextToElement(this.signupEmailInput, email);
-        // Click 'Signup' button
-        await this.basePage.clickToElement(this.signupButton);
-    }
-
-    // Select title
-    async selectTitle(gender) {
-        if (gender === 'Mr') {
-            await this.basePage.checkElement(this.titleMr);
-        } else if (gender === 'Mrs') {
-            await this.basePage.checkElement(this.titleMrs);
-        }
-    }
-
     // Fill details: Title, Name, Email, Password, Date of birth
+    async selectTitleMr() {
+        await this.basePage.checkElement(this.titleMr);
+    }
+    async selectTitleMrs() {
+        await this.basePage.checkElement(this.titleMrs);
+    }
     async fillAccountInformation(data) {
         await this.basePage.fillTextToElement(this.accountNameInput, data.name);
         await this.basePage.fillTextToElement(this.passwordInput, data.password);
@@ -125,5 +100,3 @@ class RegisterPage {
         await this.basePage.clickToElement(this.deleteAccountButton);
     }
 }
-
-module.exports = RegisterPage;

@@ -1,7 +1,8 @@
-const BasePage = require('./base.page');
-const LoginPage = require('./login.page');
+import { expect } from '@playwright/test';
+import BasePage from './base.page.js';
+import LoginSignupPage from './loginSignup.page.js';
 
-class HomePage {
+export default class HomePage {
   constructor(page) {
     this.page = page;
     this.basePage = new BasePage(page);
@@ -12,11 +13,15 @@ class HomePage {
   }
 
   // ===== ACTIONS =====
-  async openLoginPage() {
+  // Verify that home page is visible successfully
+  async verifyHomePageIsVisible() {
+    const expectedColorInRba = "rgb(255, 165, 0)";
+    await expect(this.homeButton).toHaveCSS("color", expectedColorInRba);
+  }
+  // Click 'Signup / Login' button
+  async openLoginSignupPage() {
     await this.basePage.clickToElement(this.loginButton);
     //await this.basePage.waitForUrl("/login");
-    return new LoginPage(this.page);
+    return new LoginSignupPage(this.page);
   }
 }
-
-module.exports = HomePage;

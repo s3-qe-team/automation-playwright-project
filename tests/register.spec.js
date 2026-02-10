@@ -1,14 +1,16 @@
-const { test, expect } = require('@playwright/test');
-const { config } = require('../utils/config');
-const HomePage = require('../pages/home.page');
-const RegisterPage = require('../pages/register.page');
+import { test, expect } from '@playwright/test';
+import { config } from '../utils/config.js';
+import HomePage from '../pages/home.page.js';
+import RegisterPage from '../pages/register.page.js';
+import LoginSignupPage from '../pages/loginSignup.page.js';
 
 test.describe('@smoke', () => {
-    let registerPage, homePage;
+    let registerPage, homePage, loginSignupPage;
     test.beforeEach(async ({ page }) => {
         // 1. Launch browser
         registerPage = new RegisterPage(page);
         homePage = new HomePage(page);
+        loginSignupPage = new LoginSignupPage(page);
     })
 
     test('Test Case 1: Register User', async ({ page }) => {
@@ -16,25 +18,26 @@ test.describe('@smoke', () => {
         await page.goto(config.baseURL);
 
         // 3. Verify that home page is visible successfully
-        await expect(page).toHaveTitle(/Automation Exercise/);
+        await homePage.verifyHomePageIsVisible();
 
         // 4. Click on 'Signup / Login' button
-        await homePage.openLoginPage();
+        await homePage.openLoginSignupPage();
 
         // 5. Verify 'New User Signup!' is visible
-        await expect(registerPage.signupHeader).toBeVisible();
-        await expect(registerPage.signupHeader).toHaveText('New User Signup!');
+        await expect(loginSignupPage.signupHeader).toBeVisible();
+        await expect(loginSignupPage.signupHeader).toHaveText('New User Signup!');
 
         // 6 & 7. Enter name and email address and click 'Signup' button
         const randomEmail = `test_${Date.now()}@gmail.com`;
-        await registerPage.signup(config.testUserName, randomEmail);
+        await loginSignupPage.signup(config.testUserName, randomEmail);
+        await loginSignupPage.clickToSignupButton();
 
         // 8. Verify that 'ENTER ACCOUNT INFORMATION' is visible
         await expect(registerPage.accountInformationHeader).toBeVisible();
         await expect(registerPage.accountInformationHeader).toHaveText('Enter Account Information');
 
         // 9. Fill details: Title, Name, Email, Password, Date of birth
-        await registerPage.selectTitle('Mrs');
+        await registerPage.selectTitleMr();
         await registerPage.fillAccountInformation({
             name: config.testUserName,
             password: config.testUserPassword,
@@ -53,7 +56,6 @@ test.describe('@smoke', () => {
             lastName: config.testUserLastName,
             company: config.testUserCompany,
             address: config.testUserAddress,
-            address2: '',
             country: 'Singapore',
             state: config.testUserState,
             city: config.testUserCity,
@@ -72,8 +74,8 @@ test.describe('@smoke', () => {
         await registerPage.clickContinueButton();
 
         // 16. Verify that ' Logged in as username' is visible
-        await expect(registerPage.loggedInUserText).toBeVisible();
-        await expect(registerPage.loggedInUserText).toHaveText(`Logged in as ${config.testUserName}`);
+        await expect(loginSignupPage.loginSuccessText).toBeVisible();
+        await expect(loginSignupPage.loginSuccessText).toHaveText(`Logged in as ${config.testUserName}`);
 
         // 17. Click 'Delete Account' button
         await registerPage.clickDeleteAccountButton();
