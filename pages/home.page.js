@@ -13,11 +13,6 @@ export default class HomePage {
   }
 
   // ===== ACTIONS =====
-  // Verify that home page is visible successfully
-  async verifyHomePageIsVisible() {
-    const expectedColorInRba = "rgb(255, 165, 0)";
-    await expect(this.homeButton).toHaveCSS("color", expectedColorInRba);
-  }
   // Click 'Signup / Login' button
   async openLoginSignupPage() {
     await this.basePage.clickToElement(this.loginButton);

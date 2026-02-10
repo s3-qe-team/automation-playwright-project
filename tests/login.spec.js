@@ -4,6 +4,8 @@ import BasePage from '../pages/base.page.js';
 
 const email = "automationtest01@gmail.com";
 const password = "Abc123456";
+const cssValue = "color";
+const expectedColorInRba = "rgb(255, 165, 0)";
 const expectedLoginPageTitle = "Login to your account";
 
 test.describe('@smoke', () => {
@@ -14,7 +16,7 @@ test.describe('@smoke', () => {
 
   test('Test Case 2: Login User with correct email and password', async ({ page }) => {
     const homePage = new HomePage(page);
-    await homePage.verifyHomePageIsVisible();
+    await expect(homePage.homeButton).toHaveCSS(cssValue, expectedColorInRba);
     const loginSignupPage = await homePage.openLoginSignupPage();
     await expect(page).toHaveURL('/login');
     await expect(loginSignupPage.loginPageTitle).toBeVisible();
@@ -24,4 +26,4 @@ test.describe('@smoke', () => {
     await loginSignupPage.clickToLoginButton();
     await expect(loginSignupPage.loginSuccessText).toBeVisible();
   });
-})
+})  
