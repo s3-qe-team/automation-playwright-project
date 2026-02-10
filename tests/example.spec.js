@@ -5,7 +5,7 @@
 const { test, expect } = require("@playwright/test");
 const helpers = require("../utils/helpers");
 
-test.describe("Example Test Suite @smoke", () => {
+test.describe("Example Test Suite", () => {
   test("basic navigation test", async ({ page }) => {
     await page.goto("https://playwright.dev");
 
@@ -34,7 +34,7 @@ test.describe("Example Test Suite @smoke", () => {
 });
 
 // Tagged test examples
-test.describe("Smoke Tests @smoke", () => {
+test.describe("Smoke Tests", () => {
   test("critical user flow", async ({ page }) => {
     // Critical path test
     await page.goto("https://playwright.dev");
