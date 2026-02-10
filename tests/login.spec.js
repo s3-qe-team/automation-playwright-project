@@ -26,4 +26,4 @@ test.describe('@smoke', () => {
     await loginSignupPage.clickToLoginButton();
     await expect(loginSignupPage.loginSuccessText).toBeVisible();
   });
-})  
+});
