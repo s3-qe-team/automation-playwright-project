@@ -17,13 +17,14 @@ test.describe('@smoke', () => {
   test('Test Case 2: Login User with correct email and password', async ({ page }) => {
     const homePage = new HomePage(page);
     await expect(homePage.homeButton).toHaveCSS(cssValue,expectedColorInRba);
-    const loginPage = await homePage.openLoginPage();
+    const loginSignupPage = await homePage.openLoginSignupPage();
     await expect(page).toHaveURL('/login');
-    await expect(loginPage.loginPageTitle).toBeVisible();
-    await expect(loginPage.loginPageTitle).toHaveText(expectedLoginPageTitle);
-    await loginPage.enterTextToEmailTextBox(email);
-    await loginPage.enterTextToPasswordTextBox(password);
-    await loginPage.clickToLoginButton();
-    await expect(loginPage.loginSuccessText).toBeVisible();
+    await expect(loginSignupPage.loginPageTitle).toBeVisible();
+    await expect(loginSignupPage.loginPageTitle).toHaveText(expectedLoginPageTitle);
+    await loginSignupPage.enterTextToEmailTextBox(email);
+    await loginSignupPage.enterTextToPasswordTextBox(password);
+    await loginSignupPage.clickToLoginButton();
+    await expect(loginSignupPage.loginSuccessText).toBeVisible();
+  });
   });
 })
