@@ -1,4 +1,3 @@
-import { expect } from '@playwright/test';
 import BasePage from './base.page.js';
 import LoginSignupPage from './loginSignup.page.js';
 
