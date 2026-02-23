@@ -31,9 +31,11 @@ class BasePage {
 
 
   //Alert
-  async acceptAlert() {
-    const dialog = await this.page.waitForEvent('dialog');
-    await dialog.accept();
+  async acceptAlert(actionTrigger) {
+    this.page.once('dialog', async dialog => {
+      await dialog.accept();
+    });
+    await actionTrigger();
   }
   async dismissAlert() {
     const dialog = await this.page.waitForEvent('dialog');
@@ -210,6 +212,11 @@ class BasePage {
 
   async pressKey(key) {
     await this.page.keyboard.press(key);
+  }
+
+  // Upload file
+  async uploadFile(locator, filePath) {
+    await locator.setInputFiles(filePath);
   }
 }
 

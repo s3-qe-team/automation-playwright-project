@@ -1,6 +1,6 @@
-const BasePage = require("./base.page");
+import BasePage from './base.page.js';
 
-class ContactUsPage {
+export default class ContactUsPage {
     constructor(page) {
         this.page = page;
         this.basePage = new BasePage(page);
@@ -12,7 +12,7 @@ class ContactUsPage {
         this.emailInput = page.locator('input[data-qa="email"]');
         this.subjectInput = page.locator('input[data-qa="subject"]');
         this.messageInput = page.getByPlaceholder('Your Message Here');
-        this.uploadFileButton = page.locator('input[type="file"]');
+        this.uploadFileButton = page.locator('input[name="upload_file"]');
         this.submitButton = page.locator('input[data-qa="submit-button"]');
         this.successMessage = page.locator('#contact-page .alert-success');
         this.homeButton = page.locator('.btn-success[href="/"]');
@@ -38,12 +38,8 @@ class ContactUsPage {
     }
 
     // Accept alert
-    async acceptAlert() {
-        await this.basePage.acceptAlert();
-    }
-
-    async onceAcceptAlert() {
-        await this.basePage.onceAcceptAlert();
+    async acceptAlert(actionTrigger) {
+        await this.basePage.acceptAlert(actionTrigger);
     }
 
     // Click 'Submit' button
@@ -56,5 +52,3 @@ class ContactUsPage {
         await this.basePage.clickToElement(this.homeButton);
     }
 }
-
-module.exports = ContactUsPage;
