@@ -6,7 +6,6 @@ export default class ContactUsPage {
         this.basePage = new BasePage(page);
 
         // ==== LOCATORS ====
-        this.contactUsButton = page.locator('a[href="/contact_us"]');
         this.getInTouchHeader = page.locator('div.contact-form h2');
         this.nameInput = page.locator('input[data-qa="name"]');
         this.emailInput = page.locator('input[data-qa="email"]');
@@ -19,11 +18,6 @@ export default class ContactUsPage {
     }
 
     // ==== ACTIONS ====
-    // Click on 'Contact Us' button
-    async clickContactUsButton() {
-        await this.basePage.clickToElement(this.contactUsButton);
-    }
-
     // Fill in contact form
     async fillContactForm(data) {
         await this.basePage.fillTextToElement(this.nameInput, data.name);

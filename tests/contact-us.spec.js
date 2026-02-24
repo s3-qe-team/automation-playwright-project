@@ -21,7 +21,7 @@ test.describe('@smoke', () => {
         await expect(homePage.homeButton).toHaveCSS("color", "rgb(255, 165, 0)");
 
         // 4. Click on 'Contact Us' button
-        await contactUsPage.clickContactUsButton();
+        await homePage.clickContactUsButton();
 
         // 5. Verify 'GET IN TOUCH' is visible
         await expect(contactUsPage.getInTouchHeader).toBeVisible();
