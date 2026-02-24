@@ -1,4 +1,5 @@
 import BasePage from './base.page.js';
+import LoginSignupPage from './loginSignup.page.js';
 
 export default class HomePage {
   constructor(page) {
