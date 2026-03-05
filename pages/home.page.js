@@ -12,11 +12,10 @@ export default class HomePage {
   }
 
   // ===== ACTIONS =====
+  // Click 'Signup / Login' button
   async openLoginSignupPage() {
     await this.basePage.clickToElement(this.loginButton);
     //await this.basePage.waitForUrl("/login");
     return new LoginSignupPage(this.page);
   }
-
-  
 }
