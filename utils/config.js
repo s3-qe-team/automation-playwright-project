@@ -10,10 +10,6 @@ const config = {
   baseURL: process.env.BASE_URL || 'https://automationexercise.com',
 
   // Test User Credentials
-  testUserEmail: process.env.TEST_USER_EMAIL || 'test@example.com',
-  testUserPassword: process.env.TEST_USER_PASSWORD || 'password',
-
-  // Test User Details
   testUserName: process.env.TEST_USER_NAME || 'Test User',
   testUserFirstName: process.env.TEST_USER_FIRST_NAME || 'QA',
   testUserLastName: process.env.TEST_USER_LAST_NAME || 'Tester',
@@ -23,6 +19,11 @@ const config = {
   testUserCity: process.env.TEST_USER_CITY || 'Test City',
   testUserZipCode: process.env.TEST_USER_ZIP_CODE || '12345',
   testUserMobileNumber: process.env.TEST_USER_MOBILE_NUMBER || '1234567890',
+  testUserEmail: process.env.TEST_USER_EMAIL || 'test@example.com',
+  testUserPassword: process.env.TEST_USER_PASSWORD || 'password',
+  testUserConfirmPassword: process.env.TEST_USER_CONFIRM_PASSWORD || 'password',
+  testSubject: process.env.TEST_SUBJECT || 'Test Subject',
+  testMessage: process.env.TEST_MESSAGE || 'Test Message',
 
   // Environment
   env: process.env.ENV || 'qa',
