@@ -37,6 +37,12 @@ const config = {
   // Viewport (optional)
   viewportWidth: parseInt(process.env.VIEWPORT_WIDTH) || 1920,
   viewportHeight: parseInt(process.env.VIEWPORT_HEIGHT) || 1080,
+
+  // Test Artifacts
+  video: process.env.CI ? 'off' : 'retain-on-failure',
+
+  // Action Timeout
+  actionTimeout: 10 * 1000,
 };
 
 /**
