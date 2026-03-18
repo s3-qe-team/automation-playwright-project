@@ -24,11 +24,21 @@ const PR_BODY = process.env.PR_BODY || '';
 
 const GEMINI_MODEL = 'gemini-2.0-flash';
 const MAX_DIFF_LENGTH = 60000; // Giới hạn diff gửi lên Gemini để tránh vượt token limit
+const MAX_RETRIES = 3;         // Số lần retry khi bị rate limit
+const RETRY_BASE_DELAY = 60;   // Thời gian chờ cơ bản (giây)
 
 // ===================== HELPERS =====================
 
 /**
+ * Sleep for given seconds
+ */
+function sleep(seconds) {
+  return new Promise((resolve) => setTimeout(resolve, seconds * 1000));
+}
+
+/**
  * Make an HTTPS request (Promise-based, no external dependencies)
+ * Returns { statusCode, data } to allow caller to handle status codes
  */
 function httpsRequest(url, options, body) {
   return new Promise((resolve, reject) => {
@@ -43,7 +53,10 @@ function httpsRequest(url, options, body) {
             resolve(data);
           }
         } else {
-          reject(new Error(`HTTP ${res.statusCode}: ${data}`));
+          const error = new Error(`HTTP ${res.statusCode}: ${data}`);
+          error.statusCode = res.statusCode;
+          error.responseBody = data;
+          reject(error);
         }
       });
     });
@@ -54,7 +67,7 @@ function httpsRequest(url, options, body) {
 }
 
 /**
- * Call Gemini API
+ * Call Gemini API with retry logic for rate limiting (429)
  */
 async function callGemini(prompt) {
   const url = `https://generativelanguage.googleapis.com/v1beta/models/${GEMINI_MODEL}:generateContent?key=${GEMINI_API_KEY}`;
@@ -78,13 +91,36 @@ async function callGemini(prompt) {
     },
   };
 
-  const response = await httpsRequest(parsedUrl, options, body);
+  for (let attempt = 1; attempt <= MAX_RETRIES; attempt++) {
+    try {
+      const response = await httpsRequest(parsedUrl, options, body);
 
-  if (response.candidates && response.candidates[0]?.content?.parts?.[0]?.text) {
-    return response.candidates[0].content.parts[0].text;
+      if (response.candidates && response.candidates[0]?.content?.parts?.[0]?.text) {
+        return response.candidates[0].content.parts[0].text;
+      }
+
+      throw new Error('Unexpected Gemini API response: ' + JSON.stringify(response));
+    } catch (error) {
+      if (error.statusCode === 429 && attempt < MAX_RETRIES) {
+        // Parse retry delay from response if available
+        let waitSeconds = RETRY_BASE_DELAY * attempt;
+        try {
+          const errorBody = JSON.parse(error.responseBody);
+          const retryInfo = errorBody.error?.details?.find(
+            (d) => d['@type']?.includes('RetryInfo')
+          );
+          if (retryInfo?.retryDelay) {
+            waitSeconds = Math.ceil(parseFloat(retryInfo.retryDelay)) + 5;
+          }
+        } catch { /* use default wait */ }
+
+        console.log(`⚠️ Rate limited (429). Attempt ${attempt}/${MAX_RETRIES}. Waiting ${waitSeconds}s before retry...`);
+        await sleep(waitSeconds);
+        continue;
+      }
+      throw error;
+    }
   }
-
-  throw new Error('Unexpected Gemini API response: ' + JSON.stringify(response));
 }
 
 /**
