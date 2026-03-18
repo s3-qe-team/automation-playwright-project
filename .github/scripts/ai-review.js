@@ -22,8 +22,8 @@ const REPO = process.env.REPO;
 const PR_TITLE = process.env.PR_TITLE || '';
 const PR_BODY = process.env.PR_BODY || '';
 
-const GEMINI_MODEL = 'gemini-2.0-flash';
-const MAX_DIFF_LENGTH = 60000; // Giới hạn diff gửi lên Gemini để tránh vượt token limit
+const GEMINI_MODEL = 'gemini-2.0-flash-lite';
+const MAX_DIFF_LENGTH = 30000; // Giới hạn diff gửi lên Gemini để tránh vượt token limit
 const MAX_RETRIES = 3;         // Số lần retry khi bị rate limit
 const RETRY_BASE_DELAY = 60;   // Thời gian chờ cơ bản (giây)
 
