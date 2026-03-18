@@ -14,6 +14,12 @@ concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
 
+permissions:
+  contents: write
+  pages: write
+  actions: read
+  checks: write
+
 jobs:
   test:
     timeout-minutes: 60
