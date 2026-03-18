@@ -1,7 +1,7 @@
-import BasePage from './base.page.js';
-import LoginSignupPage from './loginSignup.page.js';
+const BasePage = require('./base.page.js');
+const LoginSignupPage = require('./login-signup.page.js');
 
-export default class HomePage {
+class HomePage {
   constructor(page) {
     this.page = page;
     this.basePage = new BasePage(page);
@@ -60,3 +60,5 @@ export default class HomePage {
     await this.basePage.clickToElement(this.contactUsButton);
   }
 }
+
+module.exports = HomePage;

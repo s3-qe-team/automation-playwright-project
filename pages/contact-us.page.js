@@ -1,6 +1,6 @@
-import BasePage from './base.page.js';
+const BasePage = require('./base.page.js');
 
-export default class ContactUsPage {
+class ContactUsPage {
     constructor(page) {
         this.page = page;
         this.basePage = new BasePage(page);
@@ -46,3 +46,5 @@ export default class ContactUsPage {
         await this.basePage.clickToElement(this.homeButton);
     }
 }
+
+module.exports = ContactUsPage;

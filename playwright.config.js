@@ -23,6 +23,7 @@ module.exports = defineConfig({
     ['html', { outputFolder: 'reports/html-report', open: 'never' }],
     ['json', { outputFile: 'reports/json-report/results.json' }],
     ['junit', { outputFile: 'reports/junit-report/results.xml' }],
+    ['allure-playwright', { outputFolder: 'allure-results' }],
     ['list']
   ],
 
@@ -35,11 +36,11 @@ module.exports = defineConfig({
     /* Default to headless in CI environments, headed mode locally */
     headless: myConfig.headless,
 
-    /* Screenshot on failure */
+    /* Screenshot on failure — auto-attached to Allure report */
     screenshot: 'only-on-failure',
 
-    /* Video recording - disabled in CI to save time and resources */
-    video: myConfig.video,
+    /* Video recording on failure — auto-attached to Allure report */
+    video: 'retain-on-failure',
 
     /* Collect trace on failure */
     trace: 'retain-on-failure',

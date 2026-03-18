@@ -7,6 +7,8 @@ playwright/.cache/
 reports/
 screenshots/
 videos/
+allure-results/
+allure-report/
 
 # Environment variables
 .env
@@ -33,6 +35,10 @@ yarn-error.log*
 # Coverage
 coverage/
 .nyc_output/
+
+# Agent / AI config (local only)
+.agent/
+prompt/
 
 # Misc
 *.bak
