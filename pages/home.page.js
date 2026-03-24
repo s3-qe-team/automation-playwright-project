@@ -1,7 +1,7 @@
-import BasePage from './base.page.js';
-import LoginSignupPage from './loginSignup.page.js';
+const BasePage = require('./base.page.js');
+const LoginSignupPage = require('./loginSignup.page.js');
 
-export default class HomePage {
+class HomePage {
   constructor(page) {
     this.page = page;
     this.basePage = new BasePage(page);
@@ -9,8 +9,8 @@ export default class HomePage {
     // ===== LOCATORS =====
     this.homeButton = page.locator("li a[href='/']");
     this.productsButton = page.locator("a[href='/products']");
-    this.cartButton = page.locator("a[href='/view_cart']");
-    this.loginButton = page.locator("a[href='/login']");
+    this.cartButton = page.getByRole('link', { name: 'Cart' });
+    this.loginButton = page.locator("a[href='/login']", { hasText: 'Signup / Login' });
     this.testCasesButton = page.locator("a[href='/test_cases']");
     this.apiTestingButton = page.locator("a[href='/api_list']");
     this.videoTutorialsButton = page.locator("a[href='https://www.youtube.com/c/AutomationExercise']");
@@ -60,3 +60,6 @@ export default class HomePage {
     await this.basePage.clickToElement(this.contactUsButton);
   }
 }
+
+module.exports = HomePage;
+

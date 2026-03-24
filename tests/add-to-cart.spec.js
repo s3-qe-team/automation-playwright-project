@@ -1,23 +1,25 @@
-import { test, expect } from '@playwright/test';
-import { config } from '../utils/config.js';
-import HomePage from "../pages/home.page";
-import ProductsPage from "../pages/products.page";
+const { test, expect } = require('@playwright/test');
+const { config } = require('../utils/config.js');
+const HomePage = require("../pages/home.page");
+const ProductsPage = require("../pages/products.page");
+const CartPage = require('../pages/cart.page.js');
 
 test.describe('@smoke', () => {
-    let productsPage, homePage;
+    let productsPage, homePage, cartPage;
     test.beforeEach(async ({ page }) => {
         // 1. Launch browser
         productsPage = new ProductsPage(page);
         homePage = new HomePage(page);
+        cartPage = new CartPage(page);
 
         // 2. Navigate to url
         await page.goto(config.baseURL);
+
+        // 3. Verify that home page is visible successfully
+        await expect(homePage.homeButton).toHaveCSS("color", "rgb(255, 165, 0)");
     })
 
     test('Test Case 12: Add Products in Cart', async () => {
-        // 3. Verify that home page is visible successfully
-        await expect(homePage.homeButton).toHaveCSS("color", "rgb(255, 165, 0)");
-
         // 4. Click 'Products' button
         await homePage.clickProductsButton();
 
@@ -39,24 +41,21 @@ test.describe('@smoke', () => {
 
         // 9. Verify both products are added to Cart
         await expect(homePage.cartButton).toHaveCSS("color", "rgb(255, 165, 0)");
-        await expect(productsPage.cartRows).toHaveCount(2);
+        await expect(cartPage.cartRows).toHaveCount(2);
 
         // 10. Verify their prices, quantity and total price
         // First Product
-        await expect(productsPage.productPrice(0)).toContainText(firstProductPrice);
-        await expect(productsPage.productQuantity(0)).toHaveText('1');
-        await expect(productsPage.productTotal(0)).toContainText(firstProductPrice);
+        await expect(cartPage.productPrice(0)).toContainText(firstProductPrice);
+        await expect(cartPage.productQuantity(0)).toHaveText('1');
+        await expect(cartPage.productTotal(0)).toContainText(firstProductPrice);
 
         // Second Product
-        await expect(productsPage.productPrice(1)).toContainText(secondProductPrice);
-        await expect(productsPage.productQuantity(1)).toHaveText('1');
-        await expect(productsPage.productTotal(1)).toContainText(secondProductPrice);
+        await expect(cartPage.productPrice(1)).toContainText(secondProductPrice);
+        await expect(cartPage.productQuantity(1)).toHaveText('1');
+        await expect(cartPage.productTotal(1)).toContainText(secondProductPrice);
     })
 
     test('Test Case 13: Verify Product quantity in Cart', async () => {
-        // 3. Verify that home page is visible successfully
-        await expect(homePage.homeButton).toHaveCSS("color", "rgb(255, 165, 0)");
-
         // 4. Click 'View Product' for any product on home page
         await productsPage.clickViewProductLink();
 
@@ -73,7 +72,7 @@ test.describe('@smoke', () => {
         await productsPage.clickViewCartButton();
 
         // 9. Verify that product is displayed in cart page with exact quantity
-        await expect(productsPage.productQuantity(0)).toHaveText('4');
+        await expect(cartPage.productQuantity(0)).toHaveText('4');
     })
 
     test('Test Case 22: Add to cart from Recommended items', async () => {
@@ -92,8 +91,8 @@ test.describe('@smoke', () => {
         await productsPage.clickViewCartButton();
 
         // 7. Verify that product is displayed in cart page
-        await expect(productsPage.cartRows).toHaveCount(1);
+        await expect(cartPage.cartRows).toHaveCount(1);
         // Verify product name
-        await expect(productsPage.cartRows.nth(0)).toContainText(recommendedItemName);
+        await expect(cartPage.cartRows.nth(0)).toContainText(recommendedItemName);
     })
 })
