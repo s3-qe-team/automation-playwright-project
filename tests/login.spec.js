@@ -1,12 +1,12 @@
-import { test, expect } from '@playwright/test';
-import HomePage from '../pages/home.page.js';
-import BasePage from '../pages/base.page.js';
+const { test, expect } = require('@playwright/test');
+const HomePage = require('../pages/home.page.js');
+const BasePage = require('../pages/base.page.js');
 
-const email = "automationtest01@gmail.com";
-const password = "Abc123456";
-const cssValue = "color";
-const expectedColorInRba = "rgb(255, 165, 0)";
-const expectedLoginPageTitle = "Login to your account";
+const email = 'automationtest01@gmail.com';
+const password = 'Abc123456';
+const cssValue = 'color';
+const expectedColorInRba = 'rgb(255, 165, 0)';
+const expectedLoginPageTitle = 'Login to your account';
 
 test.describe('@smoke', () => {
   test.beforeEach(async ({ page }) => {

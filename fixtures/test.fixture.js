@@ -3,7 +3,10 @@
  */
 const playwright = require('@playwright/test');
 const base = playwright.test;
-const LoginPage = require('../pages/login.page');
+const LoginSignupPage = require('../pages/login-signup.page.js');
+const HomePage = require('../pages/home.page.js');
+const RegisterPage = require('../pages/register.page.js');
+const ContactUsPage = require('../pages/contact-us.page.js');
 const Logger = require('../utils/logger');
 
 /**
@@ -11,12 +14,36 @@ const Logger = require('../utils/logger');
  */
 exports.test = base.extend({
   /**
-   * Login Page fixture
-   * Automatically creates a new LoginPage instance for each test
+   * LoginSignup Page fixture
+   * Automatically creates a new LoginSignupPage instance for each test
    */
-  loginPage: async ({ page }, use) => {
-    const loginPage = new LoginPage(page);
-    await use(loginPage);
+  loginSignupPage: async ({ page }, use) => {
+    const loginSignupPage = new LoginSignupPage(page);
+    await use(loginSignupPage);
+  },
+
+  /**
+   * Home Page fixture
+   */
+  homePage: async ({ page }, use) => {
+    const homePage = new HomePage(page);
+    await use(homePage);
+  },
+
+  /**
+   * Register Page fixture
+   */
+  registerPage: async ({ page }, use) => {
+    const registerPage = new RegisterPage(page);
+    await use(registerPage);
+  },
+
+  /**
+   * Contact Us Page fixture
+   */
+  contactUsPage: async ({ page }, use) => {
+    const contactUsPage = new ContactUsPage(page);
+    await use(contactUsPage);
   },
 
   /**
@@ -33,11 +60,10 @@ exports.test = base.extend({
    * Creates a context with authentication already completed
    */
   authenticatedPage: async ({ page }, use) => {
-    const loginPage = new LoginPage(page);
-    await loginPage.goto();
-    
+    const loginSignupPage = new LoginSignupPage(page);
     // TODO: Replace with actual login credentials from environment
-    // await loginPage.login(process.env.TEST_USER_EMAIL, process.env.TEST_USER_PASSWORD);
+    // await loginSignupPage.goto();
+    // await loginSignupPage.login(process.env.TEST_USER_EMAIL, process.env.TEST_USER_PASSWORD);
     
     await use(page);
   },

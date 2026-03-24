@@ -1,8 +1,8 @@
-import { test, expect } from '@playwright/test';
-import { config } from '../utils/config.js';
-import ContactUsPage from '../pages/contact-us.page.js';
-import HomePage from '../pages/home.page.js';
-import path from 'path';
+const { test, expect } = require('@playwright/test');
+const { config } = require('../utils/config.js');
+const ContactUsPage = require('../pages/contact-us.page.js');
+const HomePage = require('../pages/home.page.js');
+const path = require('path');
 
 test.describe('@smoke', () => {
     let contactUsPage;

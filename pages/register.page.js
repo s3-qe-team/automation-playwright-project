@@ -1,6 +1,6 @@
-import BasePage from './base.page.js';
+const BasePage = require('./base.page.js');
 
-export default class RegisterPage {
+class RegisterPage {
     constructor(page) {
         this.page = page;
         this.basePage = new BasePage(page);
@@ -100,3 +100,5 @@ export default class RegisterPage {
         await this.basePage.clickToElement(this.deleteAccountButton);
     }
 }
+
+module.exports = RegisterPage;

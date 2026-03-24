@@ -1,8 +1,8 @@
-import { test, expect } from '@playwright/test';
-import { config } from '../utils/config.js';
-import HomePage from '../pages/home.page.js';
-import RegisterPage from '../pages/register.page.js';
-import LoginSignupPage from '../pages/loginSignup.page.js';
+const { test, expect } = require('@playwright/test');
+const { config } = require('../utils/config.js');
+const HomePage = require('../pages/home.page.js');
+const RegisterPage = require('../pages/register.page.js');
+const LoginSignupPage = require('../pages/login-signup.page.js');
 
 test.describe('@smoke', () => {
     let registerPage, homePage, loginSignupPage;
