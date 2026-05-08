@@ -1,0 +1,108 @@
+# Page snapshot
+
+```yaml
+- generic [active] [ref=e1]:
+  - banner [ref=e2]:
+    - generic [ref=e5]:
+      - link "Website for automation practice" [ref=e8]:
+        - /url: /
+        - img "Website for automation practice" [ref=e9]
+      - list [ref=e12]:
+        - listitem [ref=e13]:
+          - link " Home" [ref=e14]:
+            - /url: /
+            - generic [ref=e15]: 
+            - text: Home
+        - listitem [ref=e16]:
+          - link " Products" [ref=e17]:
+            - /url: /products
+            - generic [ref=e18]: 
+            - text: Products
+        - listitem [ref=e19]:
+          - link " Cart" [ref=e20]:
+            - /url: /view_cart
+            - generic [ref=e21]: 
+            - text: Cart
+        - listitem [ref=e22]:
+          - link " Signup / Login" [ref=e23]:
+            - /url: /login
+            - generic [ref=e24]: 
+            - text: Signup / Login
+        - listitem [ref=e25]:
+          - link " Test Cases" [ref=e26]:
+            - /url: /test_cases
+            - generic [ref=e27]: 
+            - text: Test Cases
+        - listitem [ref=e28]:
+          - link " API Testing" [ref=e29]:
+            - /url: /api_list
+            - generic [ref=e30]: 
+            - text: API Testing
+        - listitem [ref=e31]:
+          - link " Video Tutorials" [ref=e32]:
+            - /url: https://www.youtube.com/c/AutomationExercise
+            - generic [ref=e33]: 
+            - text: Video Tutorials
+        - listitem [ref=e34]:
+          - link " Contact us" [ref=e35]:
+            - /url: /contact_us
+            - generic [ref=e36]: 
+            - text: Contact us
+  - generic [ref=e37]:
+    - heading "Contact Us" [level=2] [ref=e41]:
+      - text: Contact
+      - strong [ref=e42]: Us
+    - generic [ref=e43]:
+      - generic [ref=e45]:
+        - generic [ref=e46]: "Note: Below contact form is for testing purpose."
+        - heading "Get In Touch" [level=2] [ref=e47]
+        - generic [ref=e49]:
+          - textbox "Name" [ref=e51]
+          - textbox "Email" [ref=e53]
+          - textbox "Subject" [ref=e55]
+          - textbox "Your Message Here" [ref=e57]
+          - button "Choose File" [ref=e59]
+          - button "Submit" [ref=e61] [cursor=pointer]
+      - generic [ref=e63]:
+        - heading "Feedback For Us" [level=2] [ref=e64]
+        - generic [ref=e65]:
+          - paragraph [ref=e66]: We really appreciate your response to our website.
+          - paragraph [ref=e67]:
+            - text: Kindly share your feedback with us at
+            - link "feedback@automationexercise.com" [ref=e68]:
+              - /url: mailto:feedback@automationexercise.com
+            - text: .
+          - paragraph [ref=e69]: If you have any suggestion areas or improvements, do let us know. We will definitely work on it.
+          - paragraph [ref=e70]: Thank you
+  - contentinfo [ref=e71]:
+    - generic [ref=e76]:
+      - heading "Subscription" [level=2] [ref=e77]
+      - generic [ref=e78]:
+        - textbox "Your email address" [ref=e79]
+        - button "" [ref=e80] [cursor=pointer]:
+          - generic [ref=e81]: 
+        - paragraph [ref=e82]:
+          - text: Get the most recent updates from
+          - text: our site and be updated your self...
+    - paragraph [ref=e86]: Copyright © 2021 All rights reserved
+  - text: 
+  - insertion [ref=e87]:
+    - iframe [ref=e90]:
+      - iframe [ref=f49e1]:
+        - generic [ref=f52e2]:
+          - iframe [ref=f52e5]:
+            - generic [ref=f57e5]:
+              - img [ref=f57e8]
+              - img [ref=f57e11]
+              - img [ref=f57e14]
+              - img [ref=f57e17]
+              - img [ref=f57e20]
+              - img [ref=f57e21]
+              - img [ref=f57e24]
+              - img [ref=f57e27]
+          - generic [ref=f52e6]:
+            - generic:
+              - img [ref=f52e10] [cursor=pointer]
+              - button [ref=f52e12] [cursor=pointer]:
+                - img [ref=f52e13]
+```
