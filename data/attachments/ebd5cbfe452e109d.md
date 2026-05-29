@@ -1,0 +1,107 @@
+# Page snapshot
+
+```yaml
+- generic [ref=e1]:
+  - banner [ref=e2]:
+    - generic [ref=e5]:
+      - link [ref=e8]:
+        - /url: /
+        - img [ref=e9]
+      - list [ref=e12]:
+        - listitem [ref=e13]:
+          - link [ref=e14]:
+            - /url: /
+            - generic [ref=e15]: 
+            - text: Home
+        - listitem [ref=e16]:
+          - link [ref=e17]:
+            - /url: /products
+            - generic [ref=e18]: 
+            - text: Products
+        - listitem [ref=e19]:
+          - link [ref=e20]:
+            - /url: /view_cart
+            - generic [ref=e21]: 
+            - text: Cart
+        - listitem [ref=e22]:
+          - link [ref=e23]:
+            - /url: /login
+            - generic [ref=e24]: 
+            - text: Signup / Login
+        - listitem [ref=e25]:
+          - link [ref=e26]:
+            - /url: /test_cases
+            - generic [ref=e27]: 
+            - text: Test Cases
+        - listitem [ref=e28]:
+          - link [ref=e29]:
+            - /url: /api_list
+            - generic [ref=e30]: 
+            - text: API Testing
+        - listitem [ref=e31]:
+          - link [ref=e32]:
+            - /url: https://www.youtube.com/c/AutomationExercise
+            - generic [ref=e33]: 
+            - text: Video Tutorials
+        - listitem [ref=e34]:
+          - link [ref=e35]:
+            - /url: /contact_us
+            - generic [ref=e36]: 
+            - text: Contact us
+  - generic [ref=e37]:
+    - heading [level=2] [ref=e41]:
+      - text: Contact
+      - strong [ref=e42]: Us
+    - generic [ref=e43]:
+      - generic [ref=e45]:
+        - generic [ref=e46]: "Note: Below contact form is for testing purpose."
+        - heading [level=2] [ref=e47]: Get In Touch
+        - generic [ref=e48]: Success! Your details have been submitted successfully.
+        - link [ref=e50] [cursor=pointer]:
+          - /url: /
+          - generic [ref=e51]:
+            - generic [ref=e52]: 
+            - text: Home
+      - generic [ref=e54]:
+        - heading [level=2] [ref=e55]: Feedback For Us
+        - generic [ref=e56]:
+          - paragraph [ref=e57]: We really appreciate your response to our website.
+          - paragraph [ref=e58]:
+            - text: Kindly share your feedback with us at
+            - link [ref=e59]:
+              - /url: mailto:feedback@automationexercise.com
+              - text: feedback@automationexercise.com
+            - text: .
+          - paragraph [ref=e60]: If you have any suggestion areas or improvements, do let us know. We will definitely work on it.
+          - paragraph [ref=e61]: Thank you
+  - contentinfo [ref=e62]:
+    - generic [ref=e67]:
+      - heading [level=2] [ref=e68]: Subscription
+      - generic [ref=e69]:
+        - textbox [ref=e70]:
+          - /placeholder: Your email address
+        - button [ref=e71] [cursor=pointer]:
+          - generic [ref=e72]: 
+        - paragraph [ref=e73]: Get the most recent updates from our site and be updated your self...
+    - paragraph [ref=e77]: Copyright © 2021 All rights reserved
+  - text: 
+  - insertion [ref=e78]:
+    - iframe [ref=e81]:
+      - generic [active] [ref=f30e1]:
+        - generic [ref=f30e6]:
+          - generic [ref=f30e7]:
+            - generic "Samsung Ghana" [ref=f30e10]:
+              - link "Try Galaxy now" [ref=f30e11] [cursor=pointer]:
+                - /url: https://googleads.g.doubleclick.net/aclk?sa=l&ai=Cw3hfTS8ZaobeDuzMmtUPzfjp0Aadn4evhwGyyPr19BXSs_Halw4QASD9tJ6VAWChAqABgKWuvwPIAQGoAwHIA8sEqgTuAU_QIKqGIN_M61hdWQe3PDvsjjYar_O1Ji47CioGwTK-pHzVABJlXV6Q5TvVc6R44VRGcJprrZLBXDJG7b9r4sfuQ9yyIvSn8KqQ4dk2bjWUEkfJ2E8YeITtwk3KTWoeX3cAN3uSaM6GE4FGK7QCgaf0RzB0oGhxmS3XToMav0jCP1u4itMqWCqaEL0Kw9SQQrEygFIK1vERTKwGsew5RJjLPnG6bGBJQJUY_-1KjVEfGBDYpK17j99xtIrt20yY1JO96lFCsKlHIiCR9p_GdqLKM_x3an4EdVXCpeMdQcDG2ZB7Pv5xae-Czh3hZNDABKKe6u_bBYgFiK2c_FiAB-ja0UCoB6fMsQKoB-LYsQKoB6a-G6gHzM6xAqgH89EbqAeW2BuoB6qbsQKoB47OG6gHk9gbqAfw4BuoB-6WsQKoB_6esQKoB6--sQKoB9XJG6gH2baxAqgHmgaoB_-esQKoB9-fsQKoB_jCsQKoB_vCsQLYBwHSCDMIgGEQARifAzIIioKAgICAgAg6D4BAgMCAgICAqIACqIOAEEi9_cE6WOyakdDs3ZQDYAGxCQNKmIDhZ6sfgAoBmAsByAsBogwDkAEBqg0CR0jIDQHqDRMI4r-R0OzdlAMVbKamBB1NfBpqiA4J2BMDiBQB0BUBmBYByhYCCgD4FgGAFwGyFwQYAVAGuhcCOAGyGAkSAsVoGAEiAQDQGAGyGQE3whkCCAE&gclid=EAIaIQobChMIxriR0OzdlAMVbKamBB1NfBpqEAEYASAAEgKxPfD_BwE&num=1&cid=CAQSiAIABaugfTmqTsX9uYwED-xQn0a9Uoe1eU95D-oYCYS65p3iXn5b_o-d_gDV42huHlQ8Jw-vwUQnBBYFJI5ohjPp6GRWnTuoNBflpcEpX8InVwE-XfJrqbDfR-HRrFsiwaLnbzQ-f5Yl5MnfXOCfYr1ywmGiuTNYVQpsP01Yv54NKvsGG_LObFK9A2usengm-RJeO85cpmB9NxKFufD7mOf5AmgTkqaAk_s5sETKRDcINPQMR1KioApPQrVacy9XUtZ04fJh7OTgCLYRiubmrX8NaHYCBrEoUwyNuz-t5U56L6Pt7v55RLGjZUX5bYpADCerB_XwZgpYUHYXuNHQXW7fWallxYYd1QQYAQ&sig=AOD64_0FzLdgpOwFrVVV_uq1oeq70QGjkQ&client=ca-pub-1677597403311019&rf=1&nb=0&adurl=https://www.trygalaxy.com%3Fgad_source%3D5%26gad_campaignid%3D23882831496
+            - link "Experience Samsung Galaxy's latest One UI & its core AI features Samsung Ghana" [ref=f30e14] [cursor=pointer]:
+              - /url: https://googleads.g.doubleclick.net/aclk?sa=l&ai=Cw3hfTS8ZaobeDuzMmtUPzfjp0Aadn4evhwGyyPr19BXSs_Halw4QASD9tJ6VAWChAqABgKWuvwPIAQGoAwHIA8sEqgTuAU_QIKqGIN_M61hdWQe3PDvsjjYar_O1Ji47CioGwTK-pHzVABJlXV6Q5TvVc6R44VRGcJprrZLBXDJG7b9r4sfuQ9yyIvSn8KqQ4dk2bjWUEkfJ2E8YeITtwk3KTWoeX3cAN3uSaM6GE4FGK7QCgaf0RzB0oGhxmS3XToMav0jCP1u4itMqWCqaEL0Kw9SQQrEygFIK1vERTKwGsew5RJjLPnG6bGBJQJUY_-1KjVEfGBDYpK17j99xtIrt20yY1JO96lFCsKlHIiCR9p_GdqLKM_x3an4EdVXCpeMdQcDG2ZB7Pv5xae-Czh3hZNDABKKe6u_bBYgFiK2c_FiAB-ja0UCoB6fMsQKoB-LYsQKoB6a-G6gHzM6xAqgH89EbqAeW2BuoB6qbsQKoB47OG6gHk9gbqAfw4BuoB-6WsQKoB_6esQKoB6--sQKoB9XJG6gH2baxAqgHmgaoB_-esQKoB9-fsQKoB_jCsQKoB_vCsQLYBwHSCDMIgGEQARifAzIIioKAgICAgAg6D4BAgMCAgICAqIACqIOAEEi9_cE6WOyakdDs3ZQDYAGxCQNKmIDhZ6sfgAoBmAsByAsBogwDkAEBqg0CR0jIDQHqDRMI4r-R0OzdlAMVbKamBB1NfBpqiA4J2BMDiBQB0BUBmBYByhYCCgD4FgGAFwGyFwQYAVAGuhcCOAGyGAkSAsVoGAEiAQDQGAGyGQE3whkCCAE&gclid=EAIaIQobChMIxriR0OzdlAMVbKamBB1NfBpqEAEYASAAEgKxPfD_BwE&num=1&cid=CAQSiAIABaugfTmqTsX9uYwED-xQn0a9Uoe1eU95D-oYCYS65p3iXn5b_o-d_gDV42huHlQ8Jw-vwUQnBBYFJI5ohjPp6GRWnTuoNBflpcEpX8InVwE-XfJrqbDfR-HRrFsiwaLnbzQ-f5Yl5MnfXOCfYr1ywmGiuTNYVQpsP01Yv54NKvsGG_LObFK9A2usengm-RJeO85cpmB9NxKFufD7mOf5AmgTkqaAk_s5sETKRDcINPQMR1KioApPQrVacy9XUtZ04fJh7OTgCLYRiubmrX8NaHYCBrEoUwyNuz-t5U56L6Pt7v55RLGjZUX5bYpADCerB_XwZgpYUHYXuNHQXW7fWallxYYd1QQYAQ&sig=AOD64_0FzLdgpOwFrVVV_uq1oeq70QGjkQ&client=ca-pub-1677597403311019&rf=1&nb=7&adurl=https://www.trygalaxy.com%3Fgad_source%3D5%26gad_campaignid%3D23882831496
+          - link "Open" [ref=f30e17] [cursor=pointer]:
+            - /url: https://googleads.g.doubleclick.net/aclk?sa=l&ai=Cw3hfTS8ZaobeDuzMmtUPzfjp0Aadn4evhwGyyPr19BXSs_Halw4QASD9tJ6VAWChAqABgKWuvwPIAQGoAwHIA8sEqgTuAU_QIKqGIN_M61hdWQe3PDvsjjYar_O1Ji47CioGwTK-pHzVABJlXV6Q5TvVc6R44VRGcJprrZLBXDJG7b9r4sfuQ9yyIvSn8KqQ4dk2bjWUEkfJ2E8YeITtwk3KTWoeX3cAN3uSaM6GE4FGK7QCgaf0RzB0oGhxmS3XToMav0jCP1u4itMqWCqaEL0Kw9SQQrEygFIK1vERTKwGsew5RJjLPnG6bGBJQJUY_-1KjVEfGBDYpK17j99xtIrt20yY1JO96lFCsKlHIiCR9p_GdqLKM_x3an4EdVXCpeMdQcDG2ZB7Pv5xae-Czh3hZNDABKKe6u_bBYgFiK2c_FiAB-ja0UCoB6fMsQKoB-LYsQKoB6a-G6gHzM6xAqgH89EbqAeW2BuoB6qbsQKoB47OG6gHk9gbqAfw4BuoB-6WsQKoB_6esQKoB6--sQKoB9XJG6gH2baxAqgHmgaoB_-esQKoB9-fsQKoB_jCsQKoB_vCsQLYBwHSCDMIgGEQARifAzIIioKAgICAgAg6D4BAgMCAgICAqIACqIOAEEi9_cE6WOyakdDs3ZQDYAGxCQNKmIDhZ6sfgAoBmAsByAsBogwDkAEBqg0CR0jIDQHqDRMI4r-R0OzdlAMVbKamBB1NfBpqiA4J2BMDiBQB0BUBmBYByhYCCgD4FgGAFwGyFwQYAVAGuhcCOAGyGAkSAsVoGAEiAQDQGAGyGQE3whkCCAE&gclid=EAIaIQobChMIxriR0OzdlAMVbKamBB1NfBpqEAEYASAAEgKxPfD_BwE&num=1&cid=CAQSiAIABaugfTmqTsX9uYwED-xQn0a9Uoe1eU95D-oYCYS65p3iXn5b_o-d_gDV42huHlQ8Jw-vwUQnBBYFJI5ohjPp6GRWnTuoNBflpcEpX8InVwE-XfJrqbDfR-HRrFsiwaLnbzQ-f5Yl5MnfXOCfYr1ywmGiuTNYVQpsP01Yv54NKvsGG_LObFK9A2usengm-RJeO85cpmB9NxKFufD7mOf5AmgTkqaAk_s5sETKRDcINPQMR1KioApPQrVacy9XUtZ04fJh7OTgCLYRiubmrX8NaHYCBrEoUwyNuz-t5U56L6Pt7v55RLGjZUX5bYpADCerB_XwZgpYUHYXuNHQXW7fWallxYYd1QQYAQ&sig=AOD64_0FzLdgpOwFrVVV_uq1oeq70QGjkQ&client=ca-pub-1677597403311019&rf=1&nb=8&adurl=https://www.trygalaxy.com%3Fgad_source%3D5%26gad_campaignid%3D23882831496
+            - generic [ref=f30e21]:
+              - generic [ref=f30e22]: Open
+              - img [ref=f30e23]
+        - img [ref=f30e28] [cursor=pointer]
+        - button [ref=f30e30] [cursor=pointer]:
+          - img [ref=f30e31]
+        - iframe
+```
