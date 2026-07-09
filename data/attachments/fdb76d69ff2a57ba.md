@@ -82,13 +82,13 @@
     - generic [ref=e70]:
       - heading [level=2] [ref=e72]: Discover more
       - link [ref=e73] [cursor=pointer]:
-        - generic [ref=e74]: File Sharing & Hosting
+        - generic [ref=e74]: Manual testing services
         - img [ref=e76]
       - link [ref=e78] [cursor=pointer]:
-        - generic [ref=e79]: Computer Security
+        - generic [ref=e79]: E-learning platforms
         - img [ref=e81]
       - link [ref=e83] [cursor=pointer]:
-        - generic [ref=e84]: Testing service providers
+        - generic [ref=e84]: Handbags & Purses
         - img [ref=e86]
   - contentinfo [ref=e88]:
     - generic [ref=e93]:
@@ -101,4 +101,6 @@
         - paragraph [ref=e99]: Get the most recent updates from our site and be updated your self...
     - paragraph [ref=e103]: Copyright © 2021 All rights reserved
   - text: 
+  - iframe [ref=e105]:
+    
 ```
