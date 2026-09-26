@@ -56,9 +56,9 @@
       - generic [ref=e45]:
         - generic [ref=e46]:
           - text: "Note: Below contact form is for testing purpose."
-          - link "Testing feedback forms" [ref=e47] [cursor=pointer]:
+          - link "Software" [ref=e47] [cursor=pointer]:
             - img [ref=e49]
-            - text: Testing feedback forms
+            - text: Software
         - heading "Get In Touch" [level=2] [ref=e51]
         - generic [ref=e53]:
           - textbox "Name" [ref=e55]
@@ -78,28 +78,16 @@
             - text: .
           - paragraph [ref=e73]: If you have any suggestion areas or improvements, do let us know. We will definitely work on it.
           - paragraph [ref=e74]: Thank you
-  - insertion [ref=e76]:
-    - generic [ref=e79]:
-      - heading "These are topics related to the article that might interest you" [level=2] [ref=e81]: Discover more
-      - link "Test case templates" [ref=e82] [cursor=pointer]:
-        - generic "Test case templates" [ref=e83]
-        - img [ref=e85]
-      - link "API testing tools" [ref=e87] [cursor=pointer]:
-        - generic "API testing tools" [ref=e88]
-        - img [ref=e90]
-      - link "Compare Developer Tools" [ref=e92] [cursor=pointer]:
-        - generic "Compare Developer Tools" [ref=e93]
-        - img [ref=e95]
-  - contentinfo [ref=e97]:
-    - generic [ref=e102]:
-      - heading "Subscription" [level=2] [ref=e103]
-      - generic [ref=e104]:
-        - textbox "Your email address" [ref=e105]
-        - button "" [ref=e106] [cursor=pointer]:
-          - generic [ref=e107]: 
-        - paragraph [ref=e108]:
+  - contentinfo [ref=e75]:
+    - generic [ref=e80]:
+      - heading "Subscription" [level=2] [ref=e81]
+      - generic [ref=e82]:
+        - textbox "Your email address" [ref=e83]
+        - button "" [ref=e84] [cursor=pointer]:
+          - generic [ref=e85]: 
+        - paragraph [ref=e86]:
           - text: Get the most recent updates from
           - text: our site and be updated your self...
-    - paragraph [ref=e112]: Copyright © 2021 All rights reserved
+    - paragraph [ref=e90]: Copyright © 2021 All rights reserved
   - text: 
 ```
